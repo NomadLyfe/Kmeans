@@ -36,7 +36,7 @@ class KMeans:
 
     def _get_cluster_labels(self, clusters):
         labels = np.empty(self.n_samples)
-        for cluster_idx, cluster in enumerate(self.clusters):
+        for cluster_idx, cluster in enumerate(clusters):
             for sample_idx in cluster:
                 labels[sample_idx] = cluster_idx
         return labels
@@ -54,7 +54,7 @@ class KMeans:
         return closest_idx
 
     def _get_centroids(self, clusters):
-        centroids = np.zeros(self.K, self.n_features)
+        centroids = np.zeros((self.K, self.n_features))
         for cluster_idx, cluster in enumerate(clusters):
             cluster_mean = np.mean(self.X[cluster], axis=0)
             centroids[cluster_idx] = cluster_mean
