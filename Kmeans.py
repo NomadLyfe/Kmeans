@@ -1,4 +1,5 @@
 import numpy as np
+import matplotlib.pyplot as plt
 
 def euclidean_distance(x1, x2):
     return np.sqrt(np.sum((x1-x2)**2))
@@ -64,4 +65,13 @@ class KMeans:
         return sum(distances) == 0
 
     def plot(self):
-        pass
+        fig, ax = plt.subplots(figsize=(12, 8))
+
+        for i, index in enumerate(self.clusters):
+            point = self.X[index].T
+            ax.scatter(*point)
+
+        for point in self.centroids:
+            ax.scatter(*point, marker="x", color="black", linewidth=2)
+        
+        plt.show()
